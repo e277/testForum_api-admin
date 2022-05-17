@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
 
         \App\Models\Member::factory(2)->create();
-        \App\Models\Testimony::factory(10)->create();
-
         $this->call(TestimonyTypeSeeder::class);
+
+        \App\Models\Testimony::factory(3)->create();
         $this->call(TestimonySeeder::class);
     }
 }

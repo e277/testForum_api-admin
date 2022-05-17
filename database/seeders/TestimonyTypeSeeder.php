@@ -19,5 +19,11 @@ class TestimonyTypeSeeder extends Seeder
         TestimonyType::create([
             'type' => 'Salvation'
         ]);
+        TestimonyType::create([
+            'type' => 'Fear'
+        ]);
+        TestimonyType::create([
+            'type' => 'Faith'
+        ]);
     }
 }

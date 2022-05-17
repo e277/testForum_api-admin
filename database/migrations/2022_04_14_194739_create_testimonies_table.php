@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('testimonies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('member_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('testimony_type_id')->nullable()->constrained('testimonies', 'id')->cascadeOnDelete();
+            $table->foreignId('testimony_type_id')->constrained()->cascadeOnDelete();
             $table->string('test_title');
             $table->string('test_body');
             $table->timestamps();

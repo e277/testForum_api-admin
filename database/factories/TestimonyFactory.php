@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Member;
+use App\Models\TestimonyType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class TestimonyFactory extends Factory
     {
         return [
             'member_id' => Member::all()->random()->id,
+            'testimony_type_id' => TestimonyType::all()->random()->id,
             'test_title' => $this->faker->sentence(1),
             'test_body' => $this->faker->sentence(6)
         ];

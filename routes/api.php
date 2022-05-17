@@ -18,19 +18,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth Routes
-Route::post('register', [ApiAuthController::class, 'register']);
-Route::post('login', [ApiAuthController::class, 'login']);
+Route::post('register', [ApiAuthController::class, 'register'])->name('registerApi');
+Route::post('login', [ApiAuthController::class, 'login'])->name('loginApi');
 
+Route::middleware(['auth:sanctum'])->group(function () {
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+    // Auth routes
+    Route::post('logout', [ApiAuthController::class, 'logout'])->name('logoutApi');
 
-    // require token to log out
-    Route::post('logout', [ApiAuthController::class, 'logout']);
+    // Members routes
+    Route::get('/members', [MemberController::class, 'index'])->name('memberApi.index');
+
+    // Testimony routes
+    Route::get('/testimonies', [TestimonyController::class, 'index'])->name('testimonyApi.index');
+    Route::post('/testimonies', [TestimonyController::class, 'store'])->name('testimonyApi.store');
 });
-
-
-Route::get('/members', [MemberController::class, 'index']);
-
-
-Route::get('/testimonies', [TestimonyController::class, 'index']);
-Route::post('/testimonies', [TestimonyController::class, 'store']);
