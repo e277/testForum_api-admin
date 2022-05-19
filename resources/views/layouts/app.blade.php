@@ -8,22 +8,18 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <livewire:styles />
-
 </head>
 
 <body>
 
     <div class="min-h-screen flex">
 
-
         @include('layouts.sidebar')
-
 
         <div class="bg-indigo-50 flex-grow py-12 px-10">
             <div class="flex justify-between">
                 <div>
-                    <h4 class="text-sm font-bold text-indigo-600">Hi Admin,</h4>
+                    <h4 class="text-sm font-bold text-indigo-600">Hi Admin.</h4>
 
                 </div>
                 <div>

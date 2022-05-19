@@ -105,16 +105,4 @@ class DashboardController extends Controller
                 ->paginate(5)
         ]);
     }
-
-    public function demoLogin(Request $request)
-    {
-        $request->only('email', 'password');
-
-        if (Auth::attempt($request->only('email', 'password'))) {
-
-            Alert::success('Login Success', 'You have Login Successfully');
-
-            return redirect()->route('dashboard');
-        }
-    }
 }

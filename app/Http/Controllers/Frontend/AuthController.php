@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,10 +33,10 @@ class AuthController extends Controller
                 return redirect()->route('dashboard');
                 Alert::success('Login Success', 'You have Login Successfully');
             }
-            return redirect()->route('login');
+            return back();
         }
 
-        return redirect()->route("login");
+        return back();
     }
 
     // registration view
@@ -47,7 +45,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
     // validate user input from form
-    public function validateUser(Request $request)
+    public function registerUser(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -62,7 +60,7 @@ class AuthController extends Controller
         ]);
 
         Alert::info('Important', 'Only admin can register user');
-        return redirect()->route("register");
+        return redirect()->route("login");
     }
 
     // logout user and destroy session
@@ -73,7 +71,17 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         Alert::success('Logout Success', 'You have Logout Successfully');
+        return redirect()->route('login');
+    }
 
-        return Redirect('login');
+    // Demo Login
+    public function demoLogin(Request $request)
+    {
+        $request->only('email', 'password');
+
+        if (Auth::attempt($request->only('email', 'password'))) {
+            Alert::success('Login Success', 'You have Login Successfully');
+            return redirect()->route('dashboard');
+        }
     }
 }

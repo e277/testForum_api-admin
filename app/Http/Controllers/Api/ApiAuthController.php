@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,13 +25,13 @@ class ApiAuthController extends Controller
             'password' => Hash::make($validatedData['password']),
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken($user->name . '_Token')->plainTextToken;
 
         return response()->json([
-            'data' => $user,
+            'status' => Response::HTTP_CREATED,
             'token_type' => 'Bearer',
-            'access_token' => $token,
-            'message' => 'User Registered'
+            'user_token' => $token,
+            'message' => 'User is created'
         ]);
     }
 
@@ -45,13 +46,9 @@ class ApiAuthController extends Controller
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
         return response()->json([
-            'data' => $user,
-            'token_type' => 'Bearer',
-            'access_token' => $token,
-            'message' => 'User: ' . $user->name . ' login'
+            'status' => Response::HTTP_OK,
+            'message' => 'User: ' . $user->name . ' is login'
         ]);
     }
 
@@ -61,6 +58,7 @@ class ApiAuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
+            'status' => Response::HTTP_OK,
             'message' => 'user token destroyed',
             // 'status_code' => 204
         ]);

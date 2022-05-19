@@ -22,6 +22,6 @@ class AdminMiddleware
         if (auth()->user()->is_admin === User::IS_ADMIN) {
             return $next($request);
         }
-        return redirect()->route('login');
+        return back();
     }
 }
