@@ -42,5 +42,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    const IS_ADMIN = true;
+    const IS_ADMIN = 1;
 }

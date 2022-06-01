@@ -30,7 +30,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/members', [MemberController::class, 'index'])->name('memberApi.index');
 
     // Testimony routes
+    Route::get('/testimonies', [TestimonyController::class, 'index'])->name('testimonyApi.index');
     Route::post('/testimonies', [TestimonyController::class, 'store'])->name('testimonyApi.store');
 });
-
-Route::get('/testimonies', [TestimonyController::class, 'index'])->name('testimonyApi.index');

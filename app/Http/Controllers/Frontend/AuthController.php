@@ -33,10 +33,9 @@ class AuthController extends Controller
                 return redirect()->route('dashboard');
                 Alert::success('Login Success', 'You have Login Successfully');
             }
-            return back();
+            return redirect()->route('login.index');
         }
-
-        return back();
+        return redirect()->route('login.index');
     }
 
     // registration view
@@ -60,7 +59,7 @@ class AuthController extends Controller
         ]);
 
         Alert::info('Important', 'Only admin can register user');
-        return redirect()->route("login");
+        return redirect()->route('login.index');
     }
 
     // logout user and destroy session
@@ -71,7 +70,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         Alert::success('Logout Success', 'You have Logout Successfully');
-        return redirect()->route('login');
+        return redirect()->route('login.index');
     }
 
     // Demo Login

@@ -60,7 +60,7 @@
 
                 <div class="mt-4 flex items-center justify-between">
                     <span class="border-b w-1/5 md:w-1/4"></span>
-                    <a href="{{ route('login') }}" class="text-xs text-gray-500 uppercase">or login</a>
+                    <a href="{{ route('login.index') }}" class="text-xs text-gray-500 uppercase">or login</a>
                     <span class="border-b w-1/5 md:w-1/4"></span>
                 </div>
             </div>

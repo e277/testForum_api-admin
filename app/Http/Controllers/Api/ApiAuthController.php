@@ -16,7 +16,7 @@ class ApiAuthController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8'
         ]);
 
         $user = User::create([
@@ -31,7 +31,7 @@ class ApiAuthController extends Controller
             'status' => Response::HTTP_CREATED,
             'token_type' => 'Bearer',
             'user_token' => $token,
-            'message' => 'User is created'
+            'message' => 'User: ' . $user->name . ' is created'
         ]);
     }
 
@@ -46,8 +46,12 @@ class ApiAuthController extends Controller
 
         $user = User::where('email', $request['email'])->firstOrFail();
 
+        $token = $user->createToken($user->name . '_Token')->plainTextToken;
+
         return response()->json([
             'status' => Response::HTTP_OK,
+            'token_type' => 'Bearer',
+            'user_token' => $token,
             'message' => 'User: ' . $user->name . ' is login'
         ]);
     }

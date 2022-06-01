@@ -29,7 +29,8 @@
                     </button>
                 </form>
 
-                <form action="{{ route('login.store') }}" method="post">
+                {{-- <form action="{{ route('login.store') }}" method="post"> --}}
+                <form action="{{ url('/') }}" method="post">
                     @csrf
 
                     <div class="mt-4">
@@ -64,7 +65,7 @@
 
                 <div class="mt-4 flex items-center justify-between">
                     <span class="border-b w-1/5 md:w-1/4"></span>
-                    <a href="{{ route('register') }}" class="text-xs text-gray-500 uppercase">or sign up</a>
+                    <a href="{{ route('register.index') }}" class="text-xs text-gray-500 uppercase">or sign up</a>
                     <span class="border-b w-1/5 md:w-1/4"></span>
                 </div>
             </div>
